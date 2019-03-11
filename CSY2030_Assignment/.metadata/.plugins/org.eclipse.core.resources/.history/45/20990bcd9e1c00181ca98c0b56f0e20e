@@ -1,0 +1,1476 @@
+package application;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
+import java.awt.CardLayout;
+import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+import java.awt.Cursor;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+
+
+
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.AbstractListModel;
+import javax.swing.ButtonGroup;
+
+import java.awt.Toolkit;
+import javax.swing.JPasswordField;
+
+public class Admin_menu extends JFrame {
+
+	public JPanel contentPane;
+	public JTextField text_firstname;
+	public JTextField text_lastname;
+	public JTextField text_idnumber;
+	public JTextField text_phonenumber;
+	public JTextField text_email;
+	public JTextField text_dateofbirth;
+	public JTextField text_username;
+	public JTextField textField;
+	public JTextField textField_1;
+	public JTextField textfield_Car_Reg_No;
+	public JTextField textfield_Speed_Car;
+	public JTextField textfield_Make_Car;
+	public JTextField textfield_Hire_Rate;
+	public JTextField textfield_Model_Car;
+	public JTextField textfield_Number_Doors;
+	public JTextField textfield_MiniBus_Reg_No;
+	public JTextField textField_Make_MiniBus;
+	public JTextField textfield_Speed_MiniBus;
+	public JTextField textfield_Hire_Rate_MiniBus;
+	public JTextField textfield_Model_MiniBus;
+	public JTextField textfield_Number_Doors_MiniBus;
+	public JTextField textfield_Seat_Capacity_MiniBus;
+	public JTextField textfield_Lorry_Reg_No;
+	public JTextField textfield_Make_Lorry;
+	public JTextField textfield_Top_Speed_Lorry;
+	public JTextField textfield_Daily_Rate_Lorry;
+	public JTextField textfield_Load_Weight_Lorry;
+	public JTextField textfield_Model_Lorry;
+	public JTextField textfield_Lorry_Number_Doors;
+	public static JPanel main_panel ;
+	public JPanel add_vehicle;
+	public JPanel add_car_panel;
+	public JPanel textfield_Make_MiniBus;
+	public JPanel add_lorry_panel;
+	public JPanel remove_vehicle;
+	public JLabel lbl_remove_vehicle;
+	public JPanel hire_vehicle;
+	public JPanel return_vehicle;
+	public JPanel view_vehicle;
+	public JPanel add_customer; 
+	public JPanel view_customer;
+	public JPanel left_panel;
+	private JPasswordField passwordField;
+	public ButtonGroup group;
+	static ArrayList<Motor_Vehicle> vehicle_list = new ArrayList<Motor_Vehicle>();
+	static ArrayList<Motor_Vehicle> minibus_list = new ArrayList<Motor_Vehicle>();
+
+	
+
+	Motor_Vehicle hamza;
+	Motor_Vehicle mini;
+	//Motor_Vehicle mini;
+	
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Admin_menu frame = new Admin_menu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		try {
+
+			FileInputStream fis = new FileInputStream("vehicle.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    Car obj=null;
+			
+			while ((obj=(Car)ois.readObject())!=null) {
+			
+				
+					
+				//System.out.println("Make Of Vehicle "+obj.Reg_number);
+					
+				vehicle_list.add(obj);
+				System.out.println("Reg No Of Car "+obj.Reg_number);
+				System.out.println("Make Of Car "+obj.Make_Vehicle);
+				System.out.println("Model Of Car "+obj.Model_Vehicle);
+				System.out.println("Hire Rate Of Car "+obj.Hire_Rate_Vehicle);
+				System.out.println("Speed Of Car "+obj.Speed_Vehicle);
+				System.out.println("Number of Doors Of Car "+obj.Number_doors);
+				System.out.println("Fuel Type Of Car "+obj.Fuel_Type);
+				System.out.println("Type Of Car "+obj.Vehicle_type);
+				System.out.println("Status Of Car "+obj.Vehicle_status);
+
+
+				
+			}
+			
+			 ois.close();
+			 
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+		
+		show_miniBus();
+		
+		read_miniBus();
+		
+	}
+	
+	public static void show_Car(){
+		try {
+
+			FileInputStream fis = new FileInputStream("vehicle.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    Car obj=null;
+			
+			while ((obj=(Car)ois.readObject())!=null) {
+					
+				vehicle_list.add(obj);
+			
+
+
+				
+			}
+			
+			 ois.close();
+			 
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+		
+	}
+	public static void read_Car(){
+		try {
+
+			FileInputStream fis = new FileInputStream("vehicle.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    Car obj=null;
+			
+			while ((obj=(Car)ois.readObject())!=null) {
+			
+				
+					
+				//System.out.println("Make Of Vehicle "+obj.Reg_number);
+					
+				vehicle_list.add(obj);
+				System.out.println("Reg No Of Car "+obj.Reg_number);
+				System.out.println("Make Of Car "+obj.Make_Vehicle);
+				System.out.println("Model Of Car "+obj.Model_Vehicle);
+				System.out.println("Hire Rate Of Car "+obj.Hire_Rate_Vehicle);
+				System.out.println("Speed Of Car "+obj.Speed_Vehicle);
+				System.out.println("Number of Doors Of Car "+obj.Number_doors);
+				System.out.println("Fuel Type Of Car "+obj.Fuel_Type);
+				System.out.println("Type Of Car "+obj.Vehicle_type);
+				System.out.println("Status Of Car "+obj.Vehicle_status);
+
+
+				
+			}
+			
+			 ois.close();
+			 
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+	}
+	
+	public static void read_miniBus(){
+		try {
+			//Display the details for specific vehicle
+			FileInputStream fis = new FileInputStream("minibus.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    MiniBus obj=null;
+			
+			while ((obj=(MiniBus)ois.readObject())!=null) {
+			
+				
+					
+				System.out.println("Reg No Of MiniBus "+obj.Reg_number);
+				System.out.println("Make Of MiniBus "+obj.Make_Vehicle);
+				System.out.println("Model Of MiniBus "+obj.Model_Vehicle);
+				System.out.println("Hire Rate Of MiniBus "+obj.Hire_Rate_Vehicle);
+				System.out.println("Speed Of MiniBus "+obj.Speed_Vehicle);
+				System.out.println("Number of Doors Of MiniBus "+obj.Number_doors);
+				System.out.println("Type Of MiniBus "+obj.Vehicle_type);
+				System.out.println("Status Of MiniBus "+obj.Vehicle_status);
+
+				
+				if(obj.Hire_Rate_Vehicle==10.09){
+					System.out.println("Yes");
+					System.out.println("Type Of Vehicle "+obj.Vehicle_type);
+
+				}
+				
+				
+			}
+			 ois.close();
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+
+		
+	}
+	public static void show_miniBus(){
+		
+		try {
+
+			FileInputStream fis = new FileInputStream("minibus.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    MiniBus mini_obj=null;
+			
+			while ((mini_obj=(MiniBus)ois.readObject())!=null) {
+			
+				
+					
+				minibus_list.add(mini_obj);
+
+				
+				
+	
+				
+			}
+			
+			 ois.close();
+			 
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+	}
+	
+public static  void  Remove_Previous_Panel(){
+		
+		//Removing Panel
+		main_panel.removeAll();
+		main_panel.repaint();
+		main_panel.revalidate();
+		
+		//Adding new Panel
+		main_panel.repaint();
+		main_panel.revalidate();
+		
+	}
+	
+	
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public Admin_menu(){
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Admin_menu.class.getResource("/application/Images/carr.png")));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0,0, 1950, 1040);
+		contentPane = new JPanel();
+		contentPane.setForeground(new Color(204, 204, 255));
+		contentPane.setBackground(new Color(51, 51, 51));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		 main_panel = new JPanel();
+		main_panel.setBounds(345, 146, 1555, 834);
+		contentPane.add(main_panel);
+		main_panel.setLayout(new CardLayout(0, 0));
+		
+		
+		
+		add_vehicle = new JPanel();
+		add_vehicle.setBackground(SystemColor.controlShadow);
+		main_panel.add(add_vehicle);
+		add_vehicle.setLayout(null);
+		
+		 add_car_panel = new JPanel();
+		add_car_panel.setBackground(SystemColor.controlShadow);
+		add_car_panel.setLayout(null);
+		main_panel.add(add_car_panel);
+		
+		 textfield_Make_MiniBus = new JPanel();
+		textfield_Make_MiniBus.setLayout(null);
+		main_panel.add(textfield_Make_MiniBus);
+		
+		add_lorry_panel = new JPanel();
+		add_lorry_panel.setLayout(null);
+		main_panel.add(add_lorry_panel);
+		
+		 remove_vehicle = new JPanel();
+		remove_vehicle.setBackground(SystemColor.activeCaptionBorder);
+		main_panel.add(remove_vehicle);
+		remove_vehicle.setLayout(null);
+		
+		lbl_remove_vehicle = new JLabel("Remove Vehicle");
+		lbl_remove_vehicle.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lbl_remove_vehicle.setBounds(709, 27, 195, 33);
+		remove_vehicle.add(lbl_remove_vehicle);
+		
+		JLabel label_12 = new JLabel("Select Car to Remove : ");
+		label_12.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_12.setBounds(562, 168, 210, 40);
+		remove_vehicle.add(label_12);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(784, 168, 254, 47);
+		remove_vehicle.add(comboBox_2);
+		
+		JLabel lblSelectMinibusTo = new JLabel("Select MiniBus to Remove : ");
+		lblSelectMinibusTo.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblSelectMinibusTo.setBounds(518, 366, 242, 40);
+		remove_vehicle.add(lblSelectMinibusTo);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(784, 366, 254, 47);
+		remove_vehicle.add(comboBox_3);
+		
+		JLabel lblSelectLorryTo = new JLabel("Select Lorry to Remove : ");
+		lblSelectLorryTo.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblSelectLorryTo.setBounds(538, 562, 222, 40);
+		remove_vehicle.add(lblSelectLorryTo);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(784, 562, 254, 47);
+		remove_vehicle.add(comboBox_1);
+		
+		JButton btnRemoveVehicle_1 = new JButton("Remove Vehicle");
+		btnRemoveVehicle_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnRemoveVehicle_1.setBounds(830, 751, 159, 47);
+		remove_vehicle.add(btnRemoveVehicle_1);
+		
+		 hire_vehicle = new JPanel();
+		hire_vehicle.setBackground(SystemColor.textHighlight);
+		hire_vehicle.setLayout(null);
+		main_panel.add(hire_vehicle);
+		
+		JLabel lbl_hire_vehicle = new JLabel("Hire Vehicle");
+		lbl_hire_vehicle.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lbl_hire_vehicle.setBounds(709, 27, 195, 33);
+		hire_vehicle.add(lbl_hire_vehicle);
+		
+		return_vehicle = new JPanel();
+		return_vehicle.setLayout(null);
+		return_vehicle.setBackground(SystemColor.textHighlight);
+		main_panel.add(return_vehicle);
+		
+		JLabel lbl_return = new JLabel("Return Vehicle");
+		lbl_return.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lbl_return.setBounds(709, 27, 195, 33);
+		return_vehicle.add(lbl_return);
+		
+		 view_vehicle = new JPanel();
+		view_vehicle.setLayout(null);
+		view_vehicle.setBackground(SystemColor.textHighlight);
+		main_panel.add(view_vehicle);
+		
+		JLabel lbl_view_v = new JLabel("View Vehicle");
+		lbl_view_v.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lbl_view_v.setBounds(709, 27, 195, 33);
+		view_vehicle.add(lbl_view_v);
+		
+		 add_customer = new JPanel();
+		add_customer.setLayout(null);
+		add_customer.setBackground(SystemColor.inactiveCaptionBorder);
+		main_panel.add(add_customer);
+		
+		JLabel lblAddCustomer_1 = new JLabel("Add Customer");
+		lblAddCustomer_1.setFont(new Font("Javanese Text", Font.PLAIN, 33));
+		lblAddCustomer_1.setBounds(709, 31, 224, 47);
+		add_customer.add(lblAddCustomer_1);
+		
+		JLabel label_1 = new JLabel("First Name:");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_1.setBounds(94, 138, 101, 40);
+		add_customer.add(label_1);
+		
+		text_firstname = new JTextField();
+		text_firstname.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		text_firstname.setColumns(10);
+		text_firstname.setBounds(207, 139, 234, 40);
+		add_customer.add(text_firstname);
+		
+		JLabel label_2 = new JLabel("Last Name:");
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_2.setBounds(586, 138, 101, 40);
+		add_customer.add(label_2);
+		
+		text_lastname = new JTextField();
+		text_lastname.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		text_lastname.setColumns(10);
+		text_lastname.setBounds(699, 138, 234, 40);
+		add_customer.add(text_lastname);
+		
+		JLabel label_3 = new JLabel("Identification Number:");
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_3.setBounds(1105, 138, 193, 40);
+		add_customer.add(label_3);
+		
+		text_idnumber = new JTextField();
+		text_idnumber.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		text_idnumber.setColumns(10);
+		text_idnumber.setBounds(1310, 141, 214, 40);
+		add_customer.add(text_idnumber);
+		
+		JLabel lblPhoneNumber = new JLabel("Phone Number:");
+		lblPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblPhoneNumber.setBounds(49, 275, 146, 40);
+		add_customer.add(lblPhoneNumber);
+		
+		text_phonenumber = new JTextField();
+		text_phonenumber.setFont(new Font("Dialog", Font.PLAIN, 18));
+		text_phonenumber.setColumns(10);
+		text_phonenumber.setBounds(207, 276, 234, 40);
+		add_customer.add(text_phonenumber);
+		
+		JLabel lblEmailAddress = new JLabel("E-mail Address:");
+		lblEmailAddress.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblEmailAddress.setBounds(556, 275, 131, 40);
+		add_customer.add(lblEmailAddress);
+		
+		text_email = new JTextField();
+		text_email.setFont(new Font("Dialog", Font.PLAIN, 18));
+		text_email.setColumns(10);
+		text_email.setBounds(699, 275, 234, 40);
+		add_customer.add(text_email);
+		
+		JLabel lblDateOfBirth = new JLabel("Date Of Birth:");
+		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblDateOfBirth.setBounds(1172, 275, 125, 40);
+		add_customer.add(lblDateOfBirth);
+		
+		text_dateofbirth = new JTextField();
+		text_dateofbirth.setFont(new Font("Dialog", Font.PLAIN, 18));
+		text_dateofbirth.setColumns(10);
+		text_dateofbirth.setBounds(1310, 278, 214, 40);
+		add_customer.add(text_dateofbirth);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblPassword.setBounds(595, 407, 92, 40);
+		add_customer.add(lblPassword);
+		
+		text_username = new JTextField();
+		text_username.setFont(new Font("Dialog", Font.PLAIN, 18));
+		text_username.setColumns(10);
+		text_username.setBounds(207, 408, 234, 40);
+		add_customer.add(text_username);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblUsername.setBounds(94, 407, 101, 40);
+		add_customer.add(lblUsername);
+		
+		JLabel lblVehicleType = new JLabel("Vehicle Type:");
+		lblVehicleType.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblVehicleType.setBounds(556, 544, 119, 40);
+		add_customer.add(lblVehicleType);
+		
+		JComboBox<String> vehicle_type_combo = new JComboBox<String>();
+		vehicle_type_combo.setBounds(699, 547, 234, 40);
+		add_customer.add(vehicle_type_combo);
+		vehicle_type_combo.addItem("Car");
+		vehicle_type_combo.addItem("Lorry");
+		vehicle_type_combo.addItem("MiniBus");
+
+		
+		
+		JLabel lblNumberOfVehicles = new JLabel("Number Of Vehicles:");
+		lblNumberOfVehicles.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNumberOfVehicles.setBounds(22, 547, 173, 40);
+		add_customer.add(lblNumberOfVehicles);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textField.setColumns(10);
+		textField.setBounds(207, 548, 234, 40);
+		add_customer.add(textField);
+		
+		JButton btnAddCustomer_1 = new JButton("Add Customer");
+		btnAddCustomer_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAddCustomer_1.setBounds(791, 736, 159, 47);
+		add_customer.add(btnAddCustomer_1);
+		
+		JLabel lblAddress = new JLabel("Address :");
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblAddress.setBounds(1205, 407, 93, 40);
+		add_customer.add(lblAddress);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textField_1.setColumns(10);
+		textField_1.setBounds(1309, 408, 234, 40);
+		add_customer.add(textField_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(699, 407, 234, 40);
+		add_customer.add(passwordField);
+		
+		view_customer = new JPanel();
+		view_customer.setLayout(null);
+		view_customer.setBackground(SystemColor.textHighlight);
+		main_panel.add(view_customer);
+		
+		JLabel lbl_view_customer = new JLabel("View Customer");
+		lbl_view_customer.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lbl_view_customer.setBounds(709, 27, 195, 33);
+		view_customer.add(lbl_view_customer);
+		
+		
+		
+		JLabel lblAddCar = new JLabel("ADD CAR");
+		lblAddCar.setFont(new Font("Candara", Font.BOLD, 38));
+		lblAddCar.setBounds(740, 28, 159, 47);
+		add_car_panel.add(lblAddCar);
+		
+		JLabel lblRegistrationNumber = new JLabel("Registration Number:");
+		lblRegistrationNumber.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblRegistrationNumber.setBounds(31, 160, 207, 40);
+		add_car_panel.add(lblRegistrationNumber);
+		
+		textfield_Car_Reg_No = new JTextField();
+		textfield_Car_Reg_No.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Car_Reg_No.setColumns(10);
+		textfield_Car_Reg_No.setBounds(250, 161, 234, 40);
+		add_car_panel.add(textfield_Car_Reg_No);
+		
+		JLabel lblTopSpeed = new JLabel("Top Speed :");
+		lblTopSpeed.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblTopSpeed.setBounds(115, 377, 123, 40);
+		add_car_panel.add(lblTopSpeed);
+		
+		textfield_Speed_Car = new JTextField();
+		textfield_Speed_Car.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Speed_Car.setColumns(10);
+		textfield_Speed_Car.setBounds(250, 378, 234, 40);
+		add_car_panel.add(textfield_Speed_Car);
+		
+		JLabel lblMakeOfCar = new JLabel("Make of Car :");
+		lblMakeOfCar.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblMakeOfCar.setBounds(561, 160, 131, 40);
+		add_car_panel.add(lblMakeOfCar);
+		
+		textfield_Make_Car = new JTextField();
+		textfield_Make_Car.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Make_Car.setColumns(10);
+		textfield_Make_Car.setBounds(704, 161, 240, 40);
+		add_car_panel.add(textfield_Make_Car);
+		
+		JLabel lblModelOfCar = new JLabel("Model of Car :");
+		lblModelOfCar.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblModelOfCar.setBounds(1126, 160, 144, 40);
+		add_car_panel.add(lblModelOfCar);
+		
+		JLabel lblDailyHireRate = new JLabel("Daily Hire Rate :");
+		lblDailyHireRate.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblDailyHireRate.setBounds(533, 377, 159, 40);
+		add_car_panel.add(lblDailyHireRate);
+		
+		textfield_Hire_Rate = new JTextField();
+		textfield_Hire_Rate.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Hire_Rate.setColumns(10);
+		textfield_Hire_Rate.setBounds(704, 378, 245, 40);
+		add_car_panel.add(textfield_Hire_Rate);
+		
+		JLabel lblFuelType = new JLabel("Fuel Type:");
+		lblFuelType.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblFuelType.setBounds(105, 587, 106, 40);
+		add_car_panel.add(lblFuelType);
+		
+		textfield_Model_Car = new JTextField();
+		textfield_Model_Car.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Model_Car.setColumns(10);
+		textfield_Model_Car.setBounds(1282, 161, 240, 40);
+		add_car_panel.add(textfield_Model_Car);
+		
+		JLabel lblNumberOfDoors = new JLabel("Number of Doors :");
+		lblNumberOfDoors.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNumberOfDoors.setBounds(1088, 377, 176, 40);
+		add_car_panel.add(lblNumberOfDoors);
+		
+		textfield_Number_Doors = new JTextField();
+		textfield_Number_Doors.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Number_Doors.setColumns(10);
+		textfield_Number_Doors.setBounds(1282, 378, 240, 40);
+		add_car_panel.add(textfield_Number_Doors);
+		
+		group=new ButtonGroup();
+		JRadioButton radio_btn_Diesel = new JRadioButton("Diesel");
+		radio_btn_Diesel.setBackground(SystemColor.controlShadow);
+		radio_btn_Diesel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		radio_btn_Diesel.setBounds(237, 596, 106, 25);
+		add_car_panel.add(radio_btn_Diesel);
+		
+		JRadioButton radio_btn_Petrol = new JRadioButton("Petrol");
+		radio_btn_Petrol.setBackground(SystemColor.controlShadow);
+		radio_btn_Petrol.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		radio_btn_Petrol.setBounds(374, 596, 91, 25);
+		add_car_panel.add(radio_btn_Petrol);
+		
+		group.add(radio_btn_Petrol);
+		group.add(radio_btn_Diesel);
+		
+		JButton btn_Add_Car_Data = new JButton("Add Car");
+		btn_Add_Car_Data.addActionListener(new ActionListener() {  //When Add Car button is pressed
+			public void actionPerformed(ActionEvent event) {
+				
+				
+		                                   // Validation of TextFields for adding cars
+				if(textfield_Car_Reg_No.getText().isEmpty() || textfield_Make_Car.getText().isEmpty() || textfield_Model_Car.getText().isEmpty() || textfield_Speed_Car.getText().isEmpty()
+						|| textfield_Hire_Rate.getText().isEmpty() || textfield_Number_Doors.getText().isEmpty()	){
+					
+					System.out.println("Empty");
+					
+             JOptionPane.showMessageDialog(null, "Some Details are Empty","ERROR",JOptionPane.ERROR_MESSAGE);
+					
+
+				}
+				else{	
+					
+					String gen="" ;
+					
+					if(radio_btn_Diesel.isSelected()){
+						
+						  gen=radio_btn_Diesel.getText();
+					}
+					
+					else if(radio_btn_Petrol.isSelected()){
+						
+						 gen=	radio_btn_Petrol.getText();
+					}
+					
+					
+					double speed_car=Double.parseDouble(textfield_Speed_Car.getText());
+					double car_hire_rate=Double.parseDouble(textfield_Hire_Rate.getText());
+                   int car_doors=Integer.parseInt(textfield_Number_Doors.getText());
+                   String veh_type="Car";
+                   String veh_status="Ready To Hire";
+
+          vehicle_list.add(new Car(textfield_Car_Reg_No.getText(),textfield_Make_Car.getText(),textfield_Model_Car.getText(),speed_car,car_hire_rate,car_doors,gen,veh_type,veh_status));
+					
+				
+          
+
+
+									try {
+//									
+									FileOutputStream fos = new FileOutputStream("vehicle.dat");
+									ObjectOutputStream oos = new ObjectOutputStream(fos);
+						
+									for (int i = 0; i < vehicle_list.size( ); i++)
+							      	{ // write one object
+										hamza = (Car) vehicle_list.get(i);
+							      		oos.writeObject(hamza); // this one line writes an entire object!!!!
+							      	} 
+									oos.close();
+									FileInputStream fis = new FileInputStream("vehicle.dat");
+									ObjectInputStream ois = new ObjectInputStream(fis);
+								    Car obj=null;
+									
+									while ((obj=(Car)ois.readObject())!=null) {
+									
+										
+											
+										System.out.println("Reg No Of Car "+obj.Reg_number);
+										System.out.println("Make Of Car "+obj.Make_Vehicle);
+										System.out.println("Model Of Car "+obj.Model_Vehicle);
+										System.out.println("Hire Rate Of Car "+obj.Hire_Rate_Vehicle);
+										System.out.println("Speed Of Car "+obj.Speed_Vehicle);
+										System.out.println("Number of Doors Of Car "+obj.Number_doors);
+										System.out.println("Fuel Type Of Car "+obj.Fuel_Type);
+										System.out.println("Type Of Car "+obj.Vehicle_type);
+										System.out.println("Status Of Vehicle "+obj.Vehicle_status);
+
+										
+										
+									}
+									 ois.close();
+									} catch (EOFException ex) { //This exception will be caught when EOF is reached
+									 System.out.println("End of file reached.");
+									 } catch (ClassNotFoundException ex) {
+									 ex.printStackTrace();
+									 } catch (FileNotFoundException ex) {
+									 ex.printStackTrace();
+									 } catch (IOException ex) {
+									 ex.printStackTrace();
+									 } 
+          
+				}
+				
+			
+			}
+		});
+		btn_Add_Car_Data.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Add_Car_Data.setBounds(781, 708, 159, 47);
+		add_car_panel.add(btn_Add_Car_Data);
+		
+		
+		
+		JButton btn_Back_Car = new JButton("< Back");
+		btn_Back_Car.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(add_vehicle);
+
+			}
+		});
+		btn_Back_Car.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Back_Car.setBounds(483, 708, 159, 47);
+		add_car_panel.add(btn_Back_Car);
+		
+		JButton btn_Exit = new JButton("Exit");
+		btn_Exit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Exit.setBounds(1076, 708, 159, 47);
+		add_car_panel.add(btn_Exit);
+		
+		
+		
+		JLabel lblAddMinibus = new JLabel("Add MiniBus");
+		lblAddMinibus.setFont(new Font("Javanese Text", Font.PLAIN, 33));
+		lblAddMinibus.setBounds(740, 28, 197, 47);
+		textfield_Make_MiniBus.add(lblAddMinibus);
+		
+		textfield_MiniBus_Reg_No = new JTextField();
+		textfield_MiniBus_Reg_No.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_MiniBus_Reg_No.setColumns(10);
+		textfield_MiniBus_Reg_No.setBounds(230, 153, 234, 40);
+		textfield_Make_MiniBus.add(textfield_MiniBus_Reg_No);
+		
+		JLabel label_4 = new JLabel("Registration Number:");
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_4.setBounds(33, 152, 185, 40);
+		textfield_Make_MiniBus.add(label_4);
+		
+		JLabel lblMakeOfMinibus = new JLabel("Make of MiniBus :");
+		lblMakeOfMinibus.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblMakeOfMinibus.setBounds(535, 152, 159, 40);
+		textfield_Make_MiniBus.add(lblMakeOfMinibus);
+		
+		textField_Make_MiniBus = new JTextField();
+		textField_Make_MiniBus.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_Make_MiniBus.setColumns(10);
+		textField_Make_MiniBus.setBounds(706, 153, 240, 40);
+		textfield_Make_MiniBus.add(textField_Make_MiniBus);
+		
+		JLabel label_6 = new JLabel("Top Speed :");
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_6.setBounds(106, 369, 112, 40);
+		textfield_Make_MiniBus.add(label_6);
+		
+		textfield_Speed_MiniBus = new JTextField();
+		textfield_Speed_MiniBus.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Speed_MiniBus.setColumns(10);
+		textfield_Speed_MiniBus.setBounds(230, 370, 234, 40);
+		textfield_Make_MiniBus.add(textfield_Speed_MiniBus);
+		
+		JLabel label_8 = new JLabel("Daily Hire Rate :");
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_8.setBounds(550, 369, 144, 40);
+		textfield_Make_MiniBus.add(label_8);
+		
+		textfield_Hire_Rate_MiniBus = new JTextField();
+		textfield_Hire_Rate_MiniBus.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Hire_Rate_MiniBus.setColumns(10);
+		textfield_Hire_Rate_MiniBus.setBounds(706, 370, 245, 40);
+		textfield_Make_MiniBus.add(textfield_Hire_Rate_MiniBus);
+		
+		JLabel lblSeatingCapacity = new JLabel("Seating Capacity :");
+		lblSeatingCapacity.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblSeatingCapacity.setBounds(53, 576, 165, 40);
+		textfield_Make_MiniBus.add(lblSeatingCapacity);
+		
+		JLabel lblModelOfMinibus = new JLabel("Model of MiniBus :");
+		lblModelOfMinibus.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblModelOfMinibus.setBounds(1107, 152, 165, 40);
+		textfield_Make_MiniBus.add(lblModelOfMinibus);
+		
+		textfield_Model_MiniBus = new JTextField();
+		textfield_Model_MiniBus.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Model_MiniBus.setColumns(10);
+		textfield_Model_MiniBus.setBounds(1284, 153, 240, 40);
+		textfield_Make_MiniBus.add(textfield_Model_MiniBus);
+		
+		JLabel label_11 = new JLabel("Number of Doors :");
+		label_11.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_11.setBounds(1107, 369, 159, 40);
+		textfield_Make_MiniBus.add(label_11);
+		
+		textfield_Number_Doors_MiniBus = new JTextField();
+		textfield_Number_Doors_MiniBus.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Number_Doors_MiniBus.setColumns(10);
+		textfield_Number_Doors_MiniBus.setBounds(1284, 370, 240, 40);
+		textfield_Make_MiniBus.add(textfield_Number_Doors_MiniBus);
+		
+		JButton btn_Add_MiniBus = new JButton("Add MiniBus");
+		btn_Add_MiniBus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// When Add MiniBus button is pressed
+				
+				
+			                // Validation of TextFields for MiniBus cars
+			if(textfield_MiniBus_Reg_No.getText().isEmpty() || textField_Make_MiniBus.getText().isEmpty() || textfield_Model_MiniBus.getText().isEmpty() || textfield_Speed_MiniBus.getText().isEmpty()
+					|| textfield_Hire_Rate_MiniBus.getText().isEmpty() || textfield_Number_Doors_MiniBus.getText().isEmpty() || textfield_Seat_Capacity_MiniBus.getText().isEmpty()	){
+				
+				System.out.println("EMpty");
+				
+			JOptionPane.showMessageDialog(null, "Details for addding MiniBus are Empty","ERROR",JOptionPane.ERROR_MESSAGE);
+
+			}
+			else{
+				double speed_minibus=Double.parseDouble(textfield_Speed_MiniBus.getText());
+				double hire_minibus=Double.parseDouble(textfield_Hire_Rate_MiniBus.getText());
+				int number_door_minibus=Integer.parseInt(textfield_Number_Doors_MiniBus.getText());
+				int minibus_seat_capacity=Integer.parseInt(textfield_Seat_Capacity_MiniBus.getText());
+				String veh_type="MiniBus";
+				String veh_status="Ready To Hire";
+				
+				minibus_list.add(new MiniBus(textfield_MiniBus_Reg_No.getText(),textField_Make_MiniBus.getText(),textfield_Model_MiniBus.getText(),speed_minibus,
+			hire_minibus,number_door_minibus,minibus_seat_capacity,veh_type,veh_status));
+				
+				
+
+				try {
+				
+				FileOutputStream fos = new FileOutputStream("minibus.dat");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+	
+				for (int i = 0; i < minibus_list.size( ); i++)
+		      	{ // write one object
+					mini = (MiniBus) minibus_list.get(i);
+		      		oos.writeObject(mini); // this one line writes an entire object!!!!
+		      	} 
+				oos.close();
+				FileInputStream fis = new FileInputStream("minibus.dat");
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				MiniBus mini_obj=null;
+				
+				
+				while ((mini_obj=(MiniBus)ois.readObject())!=null) {
+				
+					
+						
+					System.out.println("Reg No Of MiniBus "+mini_obj.Reg_number);
+					System.out.println("Make Of MiniBus "+mini_obj.Make_Vehicle);
+					System.out.println("Model Of MiniBus "+mini_obj.Model_Vehicle);
+					System.out.println("Hire Rate Of MiniBus "+mini_obj.Hire_Rate_Vehicle);
+					System.out.println("Speed Of MiniBus "+mini_obj.Speed_Vehicle);
+					System.out.println("Number of Doors Of MiniBus "+mini_obj.Number_doors);
+					System.out.println("Seat Capacity Of MiniBus "+mini_obj.Seat_Capacity_MiniBus);
+					System.out.println("Type Of MiniBus "+mini_obj.Vehicle_type);
+					System.out.println("Status Of MiniBus "+mini_obj.Vehicle_status);
+
+					
+					
+				}
+
+				 ois.close();
+				} catch (EOFException ex) { //This exception will be caught when EOF is reached
+				 System.out.println("End of file reached.");
+				 } catch (ClassNotFoundException ex) {
+				 ex.printStackTrace();
+				 } catch (FileNotFoundException ex) {
+				 ex.printStackTrace();
+				 } catch (IOException ex) {
+				 ex.printStackTrace();
+				 } 
+
+			
+			}
+							
+						}
+					});
+					btn_Add_MiniBus.setFont(new Font("Tahoma", Font.PLAIN, 18));
+					btn_Add_MiniBus.setBounds(783, 700, 159, 47);
+					textfield_Make_MiniBus.add(btn_Add_MiniBus);
+					
+					textfield_Seat_Capacity_MiniBus = new JTextField();
+					textfield_Seat_Capacity_MiniBus.setFont(new Font("Dialog", Font.PLAIN, 18));
+					textfield_Seat_Capacity_MiniBus.setColumns(10);
+					textfield_Seat_Capacity_MiniBus.setBounds(230, 577, 234, 40);
+					textfield_Make_MiniBus.add(textfield_Seat_Capacity_MiniBus);
+					
+					JButton back_btn_again2 = new JButton("< Back");
+					back_btn_again2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							Remove_Previous_Panel();
+							main_panel.add(add_vehicle);
+			
+						}
+		});
+		back_btn_again2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		back_btn_again2.setBounds(514, 700, 159, 47);
+		textfield_Make_MiniBus.add(back_btn_again2);
+		
+		JButton button_6 = new JButton("Exit");
+		button_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		button_6.setBounds(1107, 700, 159, 47);
+		textfield_Make_MiniBus.add(button_6);
+		
+		
+		
+		JLabel lblAddLorry = new JLabel("Add Lorry");
+		lblAddLorry.setFont(new Font("Javanese Text", Font.PLAIN, 33));
+		lblAddLorry.setBounds(740, 28, 197, 47);
+		add_lorry_panel.add(lblAddLorry);
+		
+		JLabel label_5 = new JLabel("Registration Number:");
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_5.setBounds(32, 146, 185, 40);
+		add_lorry_panel.add(label_5);
+		
+		textfield_Lorry_Reg_No = new JTextField();
+		textfield_Lorry_Reg_No.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Lorry_Reg_No.setColumns(10);
+		textfield_Lorry_Reg_No.setBounds(229, 147, 234, 40);
+		add_lorry_panel.add(textfield_Lorry_Reg_No);
+		
+		JLabel lblMakeOfLorry = new JLabel("Make of Lorry :");
+		lblMakeOfLorry.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblMakeOfLorry.setBounds(556, 146, 137, 40);
+		add_lorry_panel.add(lblMakeOfLorry);
+		
+		textfield_Make_Lorry = new JTextField();
+		textfield_Make_Lorry.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Make_Lorry.setColumns(10);
+		textfield_Make_Lorry.setBounds(705, 147, 240, 40);
+		add_lorry_panel.add(textfield_Make_Lorry);
+		
+		JLabel label_9 = new JLabel("Top Speed :");
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_9.setBounds(105, 363, 112, 40);
+		add_lorry_panel.add(label_9);
+		
+		textfield_Top_Speed_Lorry = new JTextField();
+		textfield_Top_Speed_Lorry.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Top_Speed_Lorry.setColumns(10);
+		textfield_Top_Speed_Lorry.setBounds(229, 364, 234, 40);
+		add_lorry_panel.add(textfield_Top_Speed_Lorry);
+		
+		JLabel label_10 = new JLabel("Daily Hire Rate :");
+		label_10.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_10.setBounds(549, 363, 144, 40);
+		add_lorry_panel.add(label_10);
+		
+		textfield_Daily_Rate_Lorry = new JTextField();
+		textfield_Daily_Rate_Lorry.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Daily_Rate_Lorry.setColumns(10);
+		textfield_Daily_Rate_Lorry.setBounds(705, 364, 245, 40);
+		add_lorry_panel.add(textfield_Daily_Rate_Lorry);
+		
+		JLabel lblLoadWeight = new JLabel("Load Weight :");
+		lblLoadWeight.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblLoadWeight.setBounds(80, 570, 137, 40);
+		add_lorry_panel.add(lblLoadWeight);
+		
+		textfield_Load_Weight_Lorry = new JTextField();
+		textfield_Load_Weight_Lorry.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Load_Weight_Lorry.setColumns(10);
+		textfield_Load_Weight_Lorry.setBounds(229, 571, 234, 40);
+		add_lorry_panel.add(textfield_Load_Weight_Lorry);
+		
+		JButton btn_Add_Lorry_Details = new JButton("Add Lorry");
+		btn_Add_Lorry_Details.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+						// When Add MiniBus button is pressed
+						
+						
+		                // Validation of TextFields for Lorry
+		if(textfield_Lorry_Reg_No.getText().isEmpty() || textfield_Make_Lorry.getText().isEmpty() || textfield_Model_Lorry.getText().isEmpty() || textfield_Top_Speed_Lorry.getText().isEmpty()
+				|| textfield_Daily_Rate_Lorry.getText().isEmpty() || textfield_Lorry_Number_Doors.getText().isEmpty() || textfield_Load_Weight_Lorry.getText().isEmpty()	){
+			
+			System.out.println("EMpty");
+			
+		JOptionPane.showMessageDialog(null, "Details for addding Lorry are Empty","ERROR",JOptionPane.ERROR_MESSAGE);
+		
+		}
+		else{	
+			
+//		Lorry lorry=new Lorry(textfield_Lorry_Reg_No.getText(),textfield_Make_Lorry.getText(),textfield_Model_Lorry.getText(),textfield_Top_Speed_Lorry.getText(),
+//				textfield_Daily_Rate_Lorry.getText(),textfield_Lorry_Number_Doors.getText(),textfield_Load_Weight_Lorry.getText());
+		
+		
+		}
+			}
+		});
+		btn_Add_Lorry_Details.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Add_Lorry_Details.setBounds(782, 694, 159, 47);
+		add_lorry_panel.add(btn_Add_Lorry_Details);
+		
+		JLabel lblModelOfLorry = new JLabel("Model of Lorry :");
+		lblModelOfLorry.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblModelOfLorry.setBounds(1106, 146, 165, 40);
+		add_lorry_panel.add(lblModelOfLorry);
+		
+		textfield_Model_Lorry = new JTextField();
+		textfield_Model_Lorry.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textfield_Model_Lorry.setColumns(10);
+		textfield_Model_Lorry.setBounds(1283, 147, 240, 40);
+		add_lorry_panel.add(textfield_Model_Lorry);
+		
+		JLabel label_14 = new JLabel("Number of Doors :");
+		label_14.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		label_14.setBounds(1106, 363, 159, 40);
+		add_lorry_panel.add(label_14);
+		
+		textfield_Lorry_Number_Doors = new JTextField();
+		textfield_Lorry_Number_Doors.setFont(new Font("Dialog", Font.PLAIN, 18));
+		textfield_Lorry_Number_Doors.setColumns(10);
+		textfield_Lorry_Number_Doors.setBounds(1283, 364, 240, 40);
+		add_lorry_panel.add(textfield_Lorry_Number_Doors);
+		
+		JButton back_btn = new JButton("< Back");
+		back_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(add_vehicle);
+
+			}
+		});
+		back_btn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		back_btn.setBounds(482, 694, 159, 47);
+		add_lorry_panel.add(back_btn);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnExit.setBounds(1075, 694, 159, 47);
+		add_lorry_panel.add(btnExit);
+		
+		
+		
+		JLabel lbl_add_vehicle = new JLabel("ADD VEHICLE");
+		lbl_add_vehicle.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 38));
+		lbl_add_vehicle.setBounds(740, 28, 234, 47);
+		add_vehicle.add(lbl_add_vehicle);
+		
+		JButton btn_Add_Car = new JButton("ADD CAR");
+		btn_Add_Car.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Car.setForeground(Color.WHITE);
+		btn_Add_Car.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(add_car_panel);
+
+				
+			}
+		});
+		btn_Add_Car.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btn_Add_Car.setBackground(new Color(119, 136, 153));
+		btn_Add_Car.setBounds(739, 247, 188, 107);
+		add_vehicle.add(btn_Add_Car);
+		
+		JButton btn_Add_Minibus = new JButton("ADD MINIBUS");
+		btn_Add_Minibus.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Minibus.setForeground(Color.WHITE);
+		btn_Add_Minibus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(textfield_Make_MiniBus);
+
+			}
+		});
+		btn_Add_Minibus.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btn_Add_Minibus.setBackground(new Color(119, 136, 153));
+		btn_Add_Minibus.setBounds(739, 467, 188, 107);
+		add_vehicle.add(btn_Add_Minibus);
+		
+		JButton btn_Add_Lorry = new JButton("ADD LORRY");
+		btn_Add_Lorry.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Lorry.setForeground(Color.WHITE);
+		btn_Add_Lorry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(add_lorry_panel);
+
+			}
+		});
+		btn_Add_Lorry.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btn_Add_Lorry.setBackground(new Color(119, 136, 153));
+		btn_Add_Lorry.setBounds(739, 678, 188, 107);
+		add_vehicle.add(btn_Add_Lorry);
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(add_car_panel);
+
+			}
+		});
+		button_1.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/Webp.net-resizeimage.png")));
+		button_1.setForeground(SystemColor.inactiveCaptionBorder);
+		button_1.setBorderPainted(false);
+		button_1.setBorder(null);
+		button_1.setBackground(SystemColor.controlShadow);
+		button_1.setBounds(624, 245, 102, 109);
+		add_vehicle.add(button_1);
+		
+		JButton btn_Add_Minibus_pic = new JButton("");
+		btn_Add_Minibus_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(textfield_Make_MiniBus);
+
+			}
+		});
+		btn_Add_Minibus_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/hhhjk.png")));
+		btn_Add_Minibus_pic.setForeground(SystemColor.inactiveCaptionBorder);
+		btn_Add_Minibus_pic.setBorderPainted(false);
+		btn_Add_Minibus_pic.setBorder(null);
+		btn_Add_Minibus_pic.setBackground(SystemColor.controlShadow);
+		btn_Add_Minibus_pic.setBounds(625, 467, 102, 106);
+		add_vehicle.add(btn_Add_Minibus_pic);
+		
+		JButton btn_Add_Lorry_pic = new JButton("");
+		btn_Add_Lorry_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(add_lorry_panel);
+
+			}
+		});
+		btn_Add_Lorry_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/loo.png")));
+		btn_Add_Lorry_pic.setForeground(SystemColor.inactiveCaptionBorder);
+		btn_Add_Lorry_pic.setBorderPainted(false);
+		btn_Add_Lorry_pic.setBorder(null);
+		btn_Add_Lorry_pic.setBackground(SystemColor.controlShadow);
+		btn_Add_Lorry_pic.setBounds(625, 678, 102, 106);
+		add_vehicle.add(btn_Add_Lorry_pic);
+		
+		JLabel lblSelectTheVehicle = new JLabel("Select the vehicle you want to Add:");
+		lblSelectTheVehicle.setForeground(Color.BLACK);
+		lblSelectTheVehicle.setFont(new Font("Candara", Font.BOLD, 29));
+		lblSelectTheVehicle.setBounds(54, 139, 517, 67);
+		add_vehicle.add(lblSelectTheVehicle);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/carr.png")));
+		button.setForeground(SystemColor.inactiveCaption);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(new Color(51, 51, 51));
+		button.setBounds(545, 32, 126, 84);
+		contentPane.add(button);
+		
+		JLabel label = new JLabel("Northampton Vehicle Hire Company");
+		label.setForeground(new Color(255, 255, 255));
+		label.setFont(new Font("Tahoma", Font.ITALIC, 36));
+		label.setBounds(709, 27, 621, 77);
+		contentPane.add(label);
+		
+		left_panel = new JPanel();
+		left_panel.setBackground(new Color(102, 102, 102));
+		left_panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		left_panel.setBounds(12, 148, 321, 832);
+		contentPane.add(left_panel);
+		left_panel.setLayout(null);
+		
+		JLabel lblAdminOptions = new JLabel("Admin Options");
+		lblAdminOptions.setForeground(new Color(255, 255, 255));
+		lblAdminOptions.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblAdminOptions.setBounds(84, 23, 150, 32);
+		left_panel.add(lblAdminOptions);
+		
+		JButton btn_Add_Vehicle_pic = new JButton("");
+		btn_Add_Vehicle_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Vehicle_pic.setForeground(new Color(102, 102, 102));
+		btn_Add_Vehicle_pic.setBorderPainted(false);
+		btn_Add_Vehicle_pic.setBorder(null);
+		btn_Add_Vehicle_pic.setBackground(new Color(102, 102, 102));
+		btn_Add_Vehicle_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/if_car_add_35817.png")));
+		btn_Add_Vehicle_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(add_vehicle);
+
+			}
+		});
+		btn_Add_Vehicle_pic.setBounds(43, 94, 65, 51);
+		left_panel.add(btn_Add_Vehicle_pic);
+		
+		JButton btn_Remove_Vehicle_pic = new JButton("");
+		btn_Remove_Vehicle_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Remove_Vehicle_pic.setBorderPainted(false);
+		btn_Remove_Vehicle_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/if_car_delete_35818.png")));
+		btn_Remove_Vehicle_pic.setBackground(new Color(102, 102, 102));
+		btn_Remove_Vehicle_pic.setBorder(null);
+		btn_Remove_Vehicle_pic.setForeground(new Color(102, 102, 102));
+		btn_Remove_Vehicle_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(remove_vehicle);
+
+			}
+		});
+		btn_Remove_Vehicle_pic.setBounds(43, 210, 65, 51);
+		left_panel.add(btn_Remove_Vehicle_pic);
+		
+		JButton btn_Hire_Vehicle_pic = new JButton("");
+		btn_Hire_Vehicle_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Hire_Vehicle_pic.setBorderPainted(false);
+		btn_Hire_Vehicle_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/if_BT_c3angle_905667.png")));
+		btn_Hire_Vehicle_pic.setBackground(new Color(102, 102, 102));
+		btn_Hire_Vehicle_pic.setBorder(null);
+		btn_Hire_Vehicle_pic.setForeground(new Color(102, 102, 102));
+		btn_Hire_Vehicle_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Remove_Previous_Panel();
+				main_panel.add(hire_vehicle);
+
+			}
+		});
+		btn_Hire_Vehicle_pic.setBounds(43, 330, 65, 51);
+		left_panel.add(btn_Hire_Vehicle_pic);
+		
+		JButton btn_Return_Vehicle_pic = new JButton("");
+		btn_Return_Vehicle_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Return_Vehicle_pic.setBorderPainted(false);
+		btn_Return_Vehicle_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/back.png")));
+		btn_Return_Vehicle_pic.setBackground(new Color(102, 102, 102));
+		btn_Return_Vehicle_pic.setBorder(null);
+		btn_Return_Vehicle_pic.setForeground(new Color(102, 102, 102));
+		btn_Return_Vehicle_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(return_vehicle);
+
+				
+			}
+		});
+		btn_Return_Vehicle_pic.setBounds(43, 451, 65, 51);
+		left_panel.add(btn_Return_Vehicle_pic);
+		
+		JButton btn_View_Vehicle_pic = new JButton("");
+		btn_View_Vehicle_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_View_Vehicle_pic.setBorderPainted(false);
+		btn_View_Vehicle_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/vision.png")));
+		btn_View_Vehicle_pic.setBackground(new Color(102, 102, 102));
+		btn_View_Vehicle_pic.setBorder(null);
+		btn_View_Vehicle_pic.setForeground(new Color(102, 102, 102));
+		btn_View_Vehicle_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Remove_Previous_Panel();
+				main_panel.add(view_vehicle);
+
+			}
+		});
+		btn_View_Vehicle_pic.setBounds(43, 564, 65, 51);
+		left_panel.add(btn_View_Vehicle_pic);
+		
+		JButton btn_View_Customer_pic = new JButton("");
+		btn_View_Customer_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_View_Customer_pic.setBorderPainted(false);
+		btn_View_Customer_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/if_computer_1055084 (1).png")));
+		btn_View_Customer_pic.setBackground(new Color(102, 102, 102));
+		btn_View_Customer_pic.setBorder(null);
+		btn_View_Customer_pic.setForeground(new Color(102, 102, 102));
+		btn_View_Customer_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(view_customer);
+
+				
+			}
+		});
+		btn_View_Customer_pic.setBounds(43, 768, 65, 51);
+		left_panel.add(btn_View_Customer_pic);
+		
+		JButton btn_Add_Customer_pic = new JButton("");
+		btn_Add_Customer_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Customer_pic.setBorderPainted(false);
+		btn_Add_Customer_pic.setIcon(new ImageIcon(Admin_menu.class.getResource("/application/Images/add-user.png")));
+		btn_Add_Customer_pic.setBackground(new Color(102, 102, 102));
+		btn_Add_Customer_pic.setBorder(null);
+		btn_Add_Customer_pic.setForeground(new Color(102, 102, 102));
+		btn_Add_Customer_pic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(add_customer);
+
+			}
+		});
+		btn_Add_Customer_pic.setBounds(43, 668, 65, 51);
+		left_panel.add(btn_Add_Customer_pic);
+		
+		JButton btn_Add_Vehicle = new JButton("Add Vehicle");
+		btn_Add_Vehicle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Vehicle.setBackground(UIManager.getColor("controlHighlight"));
+		btn_Add_Vehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Removing Panel
+				main_panel.removeAll();
+				main_panel.repaint();
+				main_panel.revalidate();
+				
+				//Adding new Panel
+				main_panel.repaint();
+				main_panel.revalidate();
+				main_panel.add(add_vehicle);
+
+			}
+		});
+		btn_Add_Vehicle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Add_Vehicle.setBounds(109, 94, 159, 47);
+		left_panel.add(btn_Add_Vehicle);
+		
+		JButton btn_Remove_Vehicle = new JButton("Remove Vehicle");
+		btn_Remove_Vehicle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Remove_Vehicle.setBackground(UIManager.getColor("controlHighlight"));
+		btn_Remove_Vehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(remove_vehicle);
+
+			}
+		});
+		btn_Remove_Vehicle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Remove_Vehicle.setBounds(109, 210, 159, 47);
+		left_panel.add(btn_Remove_Vehicle);
+		
+		JButton btn_Hire_Vehicle = new JButton("Hire Vehicle");
+		btn_Hire_Vehicle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Hire_Vehicle.setBackground(UIManager.getColor("controlHighlight"));
+		btn_Hire_Vehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(hire_vehicle);
+
+			}
+		});
+		btn_Hire_Vehicle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Hire_Vehicle.setBounds(109, 334, 159, 47);
+		left_panel.add(btn_Hire_Vehicle);
+		
+		JButton btn_Return_Vehicle = new JButton("Return Vehicle");
+		btn_Return_Vehicle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Return_Vehicle.setBackground(UIManager.getColor("controlHighlight"));
+		btn_Return_Vehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(return_vehicle);
+
+			}
+		});
+		btn_Return_Vehicle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Return_Vehicle.setBounds(109, 451, 159, 47);
+		left_panel.add(btn_Return_Vehicle);
+		
+		JButton btn_View_Vehicle = new JButton("View Vehicle");
+		btn_View_Vehicle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_View_Vehicle.setBackground(UIManager.getColor("controlHighlight"));
+		btn_View_Vehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(view_vehicle);
+
+			}
+		});
+		btn_View_Vehicle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_View_Vehicle.setBounds(109, 564, 159, 47);
+		left_panel.add(btn_View_Vehicle);
+		
+		JButton btn_Add_Customer = new JButton("Add Customer");
+		btn_Add_Customer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_Add_Customer.setBackground(UIManager.getColor("controlHighlight"));
+		btn_Add_Customer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Removing Panel
+				Remove_Previous_Panel();
+				main_panel.add(add_customer);
+
+			}
+		});
+		btn_Add_Customer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_Add_Customer.setBounds(109, 668, 159, 47);
+		left_panel.add(btn_Add_Customer);
+		
+		JButton btn_View_Customer = new JButton("View Customer");
+		btn_View_Customer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_View_Customer.setBackground(UIManager.getColor("controlHighlight"));
+		btn_View_Customer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Remove_Previous_Panel();
+				main_panel.add(view_customer);
+
+			}
+		});
+		btn_View_Customer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_View_Customer.setBounds(109, 770, 159, 49);
+		left_panel.add(btn_View_Customer);
+		
+		
+		
+		
+	}
+}

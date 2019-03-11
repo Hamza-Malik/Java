@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="add_Customer_list" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wrap"/>
+		<item value="true" key="wholeword"/>
+		<list key="findhistory">
+			<item value="add_Customer_list"/>
+			<item value="button_1"/>
+			<item value="button_2"/>
+			<item value="else"/>
+			<item value="if"/>
+			<item value="textField"/>
+			<item value="System.out.println"/>
+			<item value="btnShowHiredVehicle"/>
+		</list>
+		<list key="replacehistory">
+			<item value="button_extra"/>
+			<item value="button_lbl"/>
+			<item value="car_reg_return"/>
+			<item value="vehicle_reg"/>
+			<item value="Writing again with new ArrayList"/>
+			<item value="car"/>
+			<item value="public"/>
+			<item value="Remove_Previous_Panel"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="336" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="454" key="DIALOG_HEIGHT"/>
+		<item value="1262" key="DIALOG_X_ORIGIN"/>
+		<item value="232" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

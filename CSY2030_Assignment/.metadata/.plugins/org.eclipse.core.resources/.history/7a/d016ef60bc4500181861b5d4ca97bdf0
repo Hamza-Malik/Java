@@ -1,0 +1,237 @@
+package application;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.Color;
+
+public class LogInCustomer extends JFrame {
+
+	private JPanel Login_customer_main_panel;
+	private JTextField textField_customer_username;
+	static LogInCustomer logframe;
+	private JPasswordField textField_customer_password;
+	static ArrayList<Customer> customer_list = new ArrayList<Customer>();
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					logframe = new LogInCustomer();
+					logframe.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+	
+public static void add_Customer_list(){
+		
+		try {
+
+			FileInputStream fis = new FileInputStream("customer.dat");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		    Customer obj_customer=null;
+			
+			while ((obj_customer=(Customer)ois.readObject())!=null) {
+					
+				customer_list.add(obj_customer);
+			
+			}
+			
+			 ois.close();
+			 
+			} catch (EOFException ex) { //This exception will be caught when EOF is reached
+			 System.out.println("End of file reached.");
+			 } catch (ClassNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (FileNotFoundException ex) {
+			 ex.printStackTrace();
+			 } catch (IOException ex) {
+			 ex.printStackTrace();
+			 } 
+		
+		
+	}
+	
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public LogInCustomer() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0,0, 1950, 1040);
+		Login_customer_main_panel = new JPanel();
+		Login_customer_main_panel.setBackground(new Color(0, 102, 102));
+		Login_customer_main_panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(Login_customer_main_panel);
+		Login_customer_main_panel.setLayout(null);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/carr.png")));
+		button.setForeground(SystemColor.inactiveCaption);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(new Color(0, 102, 102));
+		button.setBounds(542, 62, 126, 84);
+		Login_customer_main_panel.add(button);
+		
+		JLabel label = new JLabel("Northampton Vehicle Hire Company");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 36));
+		label.setBounds(706, 57, 660, 77);
+		Login_customer_main_panel.add(label);
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		button_1.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/close.png")));
+		button_1.setBorderPainted(false);
+		button_1.setBorder(null);
+		button_1.setBackground(new Color(0, 102, 102));
+		button_1.setBounds(826, 869, 97, 67);
+		Login_customer_main_panel.add(button_1);
+		
+		JButton button_2 = new JButton("Exit");
+		button_2.setForeground(Color.WHITE);
+		button_2.setBackground(new Color(51, 102, 102));
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		button_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		button_2.setBounds(924, 869, 184, 67);
+		Login_customer_main_panel.add(button_2);
+		
+		textField_customer_username = new JTextField();
+		textField_customer_username.setBounds(895, 318, 468, 49);
+		Login_customer_main_panel.add(textField_customer_username);
+		textField_customer_username.setColumns(10);
+		
+		JLabel lblCustomerUsername = new JLabel("Customer Username :");
+		lblCustomerUsername.setForeground(Color.WHITE);
+		lblCustomerUsername.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lblCustomerUsername.setBounds(611, 298, 272, 77);
+		Login_customer_main_panel.add(lblCustomerUsername);
+		
+		JLabel lblCustomerPassword = new JLabel("Customer Password :");
+		lblCustomerPassword.setForeground(Color.WHITE);
+		lblCustomerPassword.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lblCustomerPassword.setBounds(611, 607, 272, 77);
+		Login_customer_main_panel.add(lblCustomerPassword);
+		
+		JButton button_usrname_image = new JButton("");
+		button_usrname_image.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/uu.png")));
+		button_usrname_image.setBorderPainted(false);
+		button_usrname_image.setBorder(null);
+		button_usrname_image.setBackground(new Color(0, 102, 102));
+		button_usrname_image.setBounds(542, 300, 69, 67);
+		Login_customer_main_panel.add(button_usrname_image);
+		
+		JButton button_password_image = new JButton("");
+		button_password_image.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/key.png")));
+		button_password_image.setBorderPainted(false);
+		button_password_image.setBorder(null);
+		button_password_image.setBackground(new Color(0, 102, 102));
+		button_password_image.setBounds(542, 617, 69, 67);
+		Login_customer_main_panel.add(button_password_image);
+		
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/signIn.png")));
+		button_3.setBorderPainted(false);
+		button_3.setBorder(null);
+		button_3.setBackground(new Color(0, 102, 102));
+		button_3.setBounds(1205, 869, 97, 67);
+		Login_customer_main_panel.add(button_3);
+		
+		JButton buttonSignIncustomer = new JButton("Sign In");
+		buttonSignIncustomer.setForeground(Color.WHITE);
+		buttonSignIncustomer.setBackground(new Color(51, 102, 102));
+		buttonSignIncustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				add_Customer_list();
+
+				for(int i=0;i<customer_list.size();i++){
+					
+				//	if(textField_customer_password.getText().equals(customer_list.get(i).Password) && textField_customer_username.getText().equals("customer")){
+
+				if(textField_customer_username.getText().equals(customer_list.get(i).User_name)){
+				Customer_View customer_panel=new Customer_View();
+				customer_panel.cutomer_detail(textField_customer_username.getText(),customer_list.get(i).Id_number);
+				//logframe.setVisible(false);
+				Customer_View.add_Car_list();
+				Customer_View.add_Lorry_list();
+				Customer_View.add_miniBus_list();
+				Customer_View.add_Customer_list();
+				Customer_View.add_Hired_vehicle_list();
+
+				customer_panel.show();
+				dispose();
+
+				}
+				
+				else{}
+				}
+			}
+		});
+		buttonSignIncustomer.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonSignIncustomer.setBounds(1303, 869, 184, 67);
+		Login_customer_main_panel.add(buttonSignIncustomer);
+		
+		textField_customer_password = new JPasswordField();
+		textField_customer_password.setBounds(895, 627, 468, 49);
+		Login_customer_main_panel.add(textField_customer_password);
+		
+		JButton button_4 = new JButton("");
+		button_4.setIcon(new ImageIcon(LogInCustomer.class.getResource("/application/Images/back.png")));
+		button_4.setBorderPainted(false);
+		button_4.setBorder(null);
+		button_4.setBackground(new Color(0, 102, 102));
+		button_4.setBounds(444, 869, 97, 67);
+		Login_customer_main_panel.add(button_4);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setForeground(Color.WHITE);
+		btnBack.setBackground(new Color(51, 102, 102));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Admin_Sign sign_page= new Admin_Sign();
+				sign_page.show();
+				dispose();
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBack.setBounds(542, 869, 184, 67);
+		Login_customer_main_panel.add(btnBack);
+	}
+}
